@@ -1,0 +1,420 @@
+<html>
+
+<head>
+<title>Tic-Tac-Toe</title>
+<script src="js/jquery-1.9.1.js"></script>
+<script src="js/rgbcolor.js"></script>
+<script type="text/javascript">
+
+var mat = new Array(3);
+
+function diagonalCheck(i,j)
+{
+	//alert(i);
+	var rgbc1 = new RGBColor($(mat[0][0]).css("background-color"));
+	var rgbc2 = new RGBColor($(mat[1][1]).css("background-color"));
+	var rgbc3 = new RGBColor($(mat[2][2]).css("background-color"));
+	var rgbc4 = new RGBColor($(mat[0][2]).css("background-color"));
+	var rgbc5 = new RGBColor($(mat[2][0]).css("background-color"));
+	var b1 = ((rgbc2.g === 138) && (rgbc4.g === 138) && (rgbc5.g === 138));
+	var b2 = ((rgbc2.r === 188) && (rgbc4.r === 188) && (rgbc5.r === 188));
+	var b3 = ((rgbc1.r === 188) && (rgbc2.r === 188) && (rgbc3.r === 188));
+	var b4 = ((rgbc1.g === 138) && (rgbc2.g === 138) && (rgbc3.g === 138));
+
+	
+	
+	if(b1 || b2 || b3 || b4)
+		return true;
+	else
+		return false;
+	return false;
+}
+
+function verticalCheck(j)
+{
+	//alert('hey');
+	
+	var rgbc1 = new RGBColor($(mat[0][j]).css("background-color"));
+	var rgbc2= new RGBColor($(mat[1][j]).css("background-color"));
+	var rgbc3 = new RGBColor($(mat[2][j]).css("background-color"));
+	if((rgbc1.r === rgbc2.r) && (rgbc2.r === rgbc3.r) && (rgbc1.g === rgbc2.g) && (rgbc2.g === rgbc3.g) && (rgbc1.b === rgbc2.b) && (rgbc2.b === rgbc3.b))
+	{
+		//alert('equal');
+		return true;
+	}
+	else
+	{
+		//alert('not equal');
+		return false;
+	}
+}
+
+function horizontalCheck(i)
+{
+	//alert('hey');
+	var rgbc1 = new RGBColor($(mat[i][0]).css("background-color"));
+	var rgbc2 = new RGBColor($(mat[i][1]).css("background-color"));
+	var rgbc3 = new RGBColor($(mat[i][2]).css("background-color"));
+	/*alert(rgbc1.r);
+	alert(rgbc2.r);
+	alert(rgbc3.r);
+	alert(rgbc1.g);
+	alert(rgbc2.g);
+	alert(rgbc3.g);
+	alert(rgbc1.b);
+	alert(rgbc2.b);
+	alert(rgbc3.b);
+	*/
+	
+	if((rgbc1.r === rgbc2.r) && (rgbc2.r === rgbc3.r) && (rgbc1.g === rgbc2.g) && (rgbc2.g === rgbc3.g) && (rgbc1.b === rgbc2.b) && (rgbc2.b === rgbc3.b))
+	{
+		//alert('equal');
+		return true;
+	}
+	else
+	{
+		//alert('not equal');
+		return false;
+	}
+}
+
+
+function initialize()
+{
+	//alert('here');
+	var turn = 0;
+
+	for(var i = 0; i < 3; i=i+1) {
+		mat[i] = new Array(3);
+	}
+
+	//alert("here");
+
+	mat[0][0] = document.getElementById("first");
+	mat[0][1] = document.getElementById("second");
+	mat[0][2] = document.getElementById("third");
+	mat[1][0] = document.getElementById("fourth");
+	mat[1][1] = document.getElementById("fifth");
+	mat[1][2] = document.getElementById("sixth");
+	mat[2][0] = document.getElementById("seventh");
+	mat[2][1] = document.getElementById("eigth");
+	mat[2][2] = document.getElementById("ninth");
+	
+	
+	
+	
+	/*for(var i = 0; i < 3; i++) {
+		for(var j = 0; j < 3; j++) {
+			mat[i][j].style.backgroundColor = "#9B9B9B";
+		}
+	}*/
+
+	
+	mat[0][0].onclick = function(){
+		var rgbc = new RGBColor($(mat[0][0]).css("background-color"));
+		if(rgbc.r === 155 && rgbc.g === 155 && rgbc.b === 155)
+		{
+			if(turn == 0)
+			{
+				mat[0][0].style.backgroundColor = "#BC5237";
+				turn = 1;
+			}
+			else
+			{
+				mat[0][0].style.backgroundColor = "#008A2E";
+				turn = 0;
+			}
+			if(diagonalCheck(0,0) || verticalCheck(0) || horizontalCheck(0))
+			{
+				if(turn == 1)
+				alert('player 1 wins');
+				else
+				alert('player 2 wins');
+				location.reload();
+			}
+		}
+	}
+	
+	mat[0][1].onclick = function(){
+		var rgbc = new RGBColor($(mat[0][1]).css("background-color"));
+		if(rgbc.r === 155 && rgbc.g === 155 && rgbc.b === 155)
+		{
+			if(turn == 0)
+			{
+				mat[0][1].style.backgroundColor = "#BC5237";
+				turn = 1;
+			}
+			else
+			{
+				mat[0][1].style.backgroundColor = "#008A2E";
+				turn = 0;
+			}
+			if(diagonalCheck(0,1) || verticalCheck(1) || horizontalCheck(0))
+			{
+				if(turn == 1)
+				alert('player 1 wins');
+				else
+				alert('player 2 wins');
+				location.reload();
+			}
+		}
+	}
+	
+	mat[0][2].onclick = function(){
+		var rgbc = new RGBColor($(mat[0][2]).css("background-color"));
+		if(rgbc.r === 155 && rgbc.g === 155 && rgbc.b === 155)
+		{
+			if(turn == 0)
+			{
+				mat[0][2].style.backgroundColor = "#BC5237";
+				turn = 1;
+			}
+			else
+			{
+				mat[0][2].style.backgroundColor = "#008A2E";
+				turn = 0;
+			}
+			if(diagonalCheck(0,2) || verticalCheck(2) || horizontalCheck(0))
+			{
+				if(turn == 1)
+				alert('player 1 wins');
+				else
+				alert('player 2 wins');
+				location.reload();
+			}
+		}
+	}
+	
+	mat[1][0].onclick = function(){
+		var rgbc = new RGBColor($(mat[1][0]).css("background-color"));
+		if(rgbc.r === 155 && rgbc.g === 155 && rgbc.b === 155)
+		{
+			if(turn == 0)
+			{
+				mat[1][0].style.backgroundColor = "#BC5237";
+				turn = 1;
+			}
+			else
+			{
+				mat[1][0].style.backgroundColor = "#008A2E";
+				turn = 0;
+			}
+			if(diagonalCheck(1,0) || verticalCheck(0) || horizontalCheck(1))
+			{
+				if(turn == 1)
+				alert('player 1 wins');
+				else
+				alert('player 2 wins');
+				location.reload();
+			}
+		}
+	}
+
+	mat[1][1].onclick = function(){
+		var rgbc = new RGBColor($(mat[1][1]).css("background-color"));
+		if(rgbc.r === 155 && rgbc.g === 155 && rgbc.b === 155)
+		{
+			if(turn == 0)
+			{
+				mat[1][1].style.backgroundColor = "#BC5237";
+				turn = 1;
+			}
+			else
+			{
+				mat[1][1].style.backgroundColor = "#008A2E";
+				turn = 0;
+			}
+			if(diagonalCheck(1,1) || verticalCheck(1) || horizontalCheck(1))
+			{
+				if(turn == 1)
+				alert('player 1 wins');
+				else
+				alert('player 2 wins');
+				location.reload();
+			}
+		}
+	}
+
+	mat[1][2].onclick = function(){
+		var rgbc = new RGBColor($(mat[1][2]).css("background-color"));
+		if(rgbc.r === 155 && rgbc.g === 155 && rgbc.b === 155)
+		{
+			if(turn == 0)
+			{
+				mat[1][2].style.backgroundColor = "#BC5237";
+				turn = 1;
+			}
+			else
+			{
+				mat[1][2].style.backgroundColor = "#008A2E";
+				turn = 0;
+			}
+			if(diagonalCheck(1,2) || verticalCheck(2) || horizontalCheck(1))
+			{
+				if(turn == 1)
+				alert('player 1 wins');
+				else
+				alert('player 2 wins');
+				
+				location.reload();
+				
+			}
+		}
+	}
+
+	mat[2][0].onclick = function(){
+		var rgbc = new RGBColor($(mat[2][0]).css("background-color"));
+		if(rgbc.r === 155 && rgbc.g === 155 && rgbc.b === 155)
+		{
+			if(turn == 0)
+			{
+				mat[2][0].style.backgroundColor = "#BC5237";
+				turn = 1;
+			}
+			else
+			{
+				mat[2][0].style.backgroundColor = "#008A2E";
+				turn = 0;
+			}
+			if(diagonalCheck(2,0) || verticalCheck(0) || horizontalCheck(2))
+			{
+				if(turn == 1)
+				alert('player 1 wins');
+				else
+				alert('player 2 wins');
+				location.reload();
+			}
+		}
+	}
+
+	mat[2][1].onclick = function(){
+		var rgbc = new RGBColor($(mat[2][1]).css("background-color"));
+		if(rgbc.r === 155 && rgbc.g === 155 && rgbc.b === 155)
+		{
+			if(turn == 0)
+			{
+				mat[2][1].style.backgroundColor = "#BC5237";
+				turn = 1;
+			}
+			else
+			{
+				mat[2][1].style.backgroundColor = "#008A2E";
+				turn = 0;
+			}
+			if(diagonalCheck(2,1) || verticalCheck(1) || horizontalCheck(2))
+			{
+				if(turn == 1)
+				alert('player 1 wins');
+				else
+				alert('player 2 wins');
+				location.reload();
+			}
+		}
+	}
+	
+	mat[2][2].onclick = function(){
+		var rgbc = new RGBColor($(mat[2][2]).css("background-color"));
+		if(rgbc.r === 155 && rgbc.g === 155 && rgbc.b === 155)
+		{
+			if(turn == 0)
+			{
+				mat[2][2].style.backgroundColor = "#BC5237";
+				turn = 1;
+			}
+			else
+			{
+				mat[2][2].style.backgroundColor = "#008A2E";
+				turn = 0;
+			}
+			if(diagonalCheck(2,2) || verticalCheck(2) || horizontalCheck(2))
+			{
+				if(turn == 1)
+				alert('player 1 wins');
+				else
+				alert('player 2 wins');
+				location.reload();
+			}
+		}
+	}
+
+
+	/*for(var i = 0; i < 3; i++) {
+		for(var j = 0; j < 3; j++) {
+			mat[i][j].onclick = function() {
+				//alert('hello');
+				alert(i);
+				//alert($(mat[this.i][this.j]).css('background-color'));
+				//var rgbc = new RGBColor($(mat[i][j]).css("background-color"));
+				//alert(rgbc.r === 155 && rgbc.g === 155 && rgbc.b === 155);
+				/*if(rgbc.r === 155 && rgbc.g === 155 && rgbc.b === 155) {
+					if(turn == 0)
+						mat[i][j].backgroundColor += "#BC5237";
+					else
+						mat[i][j].className += "player_two_selected";
+
+					if(diagonalCheck(i,j)) {
+						if(mat[0][0].className == "player_one_selected" ||
+								mat[0][0].className == "player_two_selected") {
+							//set all diagonal squares to black
+						} else {
+							//set all other diagonal squares to black
+						}
+					} else if(verticalCheck(j)) {
+						for(var x = 0; x < 3; x++) {
+							mat[x][j].className += "winner";
+						}
+					} else if(horizontalCheck(i)) {
+						for(var x = 0; x < 3; x++) {
+							mat[i][x].className += "winner";
+						}
+					}
+
+				}
+			}
+		}
+	}*/
+}
+
+function cl()
+{
+	alert('hi');
+}
+
+
+
+</script>
+
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body onload = "initialize()">
+
+<div id="logo">
+<div id="title-bar">
+<br/>
+
+<div id="title"><b><font color="#CCCCCC">Tic</font><font color="#9B9B9B">Tac</font><font color="#CCCCCC">Toe</font></b></div>
+</div>
+</div>
+<br/>
+<br/>
+
+<div class="container">
+
+
+
+<div id="first" style="background-color:#9B9B9B"></div>
+<div id="second" style="background-color:#9B9B9B"></div>
+<div id="third" style="background-color:#9B9B9B"></div>
+<div id="fourth" style="background-color:#9B9B9B"></div>
+<div id="fifth" style="background-color:#9B9B9B"></div>
+<div id="sixth" style="background-color:#9B9B9B"></div>
+<div id="seventh" style="background-color:#9B9B9B"></div>
+<div id="eigth" style="background-color:#9B9B9B"></div>
+<div id="ninth" style="background-color:#9B9B9B"></div>
+<br/>
+</div>
+
+</body>
+</html>
+
